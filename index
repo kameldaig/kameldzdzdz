@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب رتبتك المستحدثة في ظل القانون الخاص الجديد</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            direction: rtl;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+        .stage-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .stage-label {
+            border: 2px solid red;
+            color: red;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🎓</div>
+        <h1>حساب رتبتك المستحدثة في ظل القانون الخاص الجديد</h1>
+        <div class="form-group">
+            <label for="stage" class="stage-label">اختيار الطور</label>
+            <select id="stage" onchange="updateForm()">
+                <option value="">اختر الطور</option>
+                <option value="primary">🏫 الطور الابتدائي</option>
+                <option value="middle">🏫 الطور المتوسط</option>
+                <option value="secondary">🏫 الطور الثانوي</option>
+            </select>
+        </div>
+        <div id="primary-form" class="form-group" style="display: none;">
+            <label for="primary-rank">الرتبة الحالية</label>
+            <select id="primary-rank" onchange="updateForm()">
+                <option value="">اختر الرتبة</option>
+                <option value="assistant-teacher-7">معلم مساعد ص7</option>
+                <option value="primary-teacher-10">معلم مدرسة ابتدائية ص 10</option>
+                <option value="primary-school-teacher-11">أستاذ المدرسة الابتدائية ص 11</option>
+                <option value="primary-head-teacher-12">أستاذ رئيسي للمدرسة الابتدائية ص 12</option>
+                <option value="primary-constituent-teacher-14">أستاذ مكون في المدرسة الابتدائية ص 14</option>
+            </select>
+        </div>
+        <div id="middle-form" class="form-group" style="display: none;">
+            <label for="middle-rank">الرتبة الحالية</label>
+            <select id="middle-rank" onchange="updateForm()">
+                <option value="">اختر الرتبة</option>
+                <option value="basic-education-teacher-11">استاذ التعليم الأساسي ص 11</option>
+                <option value="middle-school-teacher-12">أستاذ التعليم المتوسط ص 12</option>
+                <option value="middle-head-teacher-13">أستاذ رئيسي للتعليم المتوسط ص 13</option>
+                <option value="middle-constituent-teacher-15">أستاذ مكون في التعليم المتوسط ص 15</option>
+            </select>
+        </div>
+        <div id="secondary-form" class="form-group" style="display: none;">
+            <label for="secondary-rank">الرتبة الحالية</label>
+            <select id="secondary-rank" onchange="updateForm()">
+                <option value="">اختر الرتبة</option>
+                <option value="technical-teacher-11">استاذ تقني في الثانوية و رئيس ورشة ص 11</option>
+                <option value="technical-teacher-12">استاذ تقني في الثانوية و رئيس أشغال ص 12</option>
+                <option value="secondary-teacher-13">أستاذ التعليم الثانوي ص 13</option>
+                <option value="secondary-head-teacher-14">أستاذ رئيسي للتعليم الثانوي ص 14</option>
+                <option value="secondary-constituent-teacher-16">أستاذ مكون في التعليم الثانوي ص 16</option>
+            </select>
+        </div>
+        <div id="appointment-date-form" class="form-group" style="display: none;">
+            <label for="appointment-date">تاريخ التعيين في الرتبة الحالية</label>
+            <input type="date" id="appointment-date">
+        </div>
+        <div id="certificate-form" class="form-group" style="display: none;">
+            <label for="certificate">تثمين الشهادة</label>
+            <select id="certificate">
+                <option value="">اختر الشهادة</option>
+                <option value="L">شهادة ليسانس L</option>
+                <option value="M">شهادة ماستر M</option>
+                <option value="D">شهادة دكتوراه D</option>
+            </select>
+        </div>
+        <button onclick="calculateRank()">حساب الرتبة الجديدة</button>
+        <div id="result" class="result" style="display: none;"></div>
+        <button onclick="resetForm()">إعادة التجربة</button>
+        <button onclick="exitApp()">خروج</button>
+    </div>
+    <script>
+        function updateForm() {
+            const stage = document.getElementById('stage').value;
+            document.getElementById('primary-form').style.display = stage === 'primary' ? 'block' : 'none';
+            document.getElementById('middle-form').style.display = stage === 'middle' ? 'block' : 'none';
+            document.getElementById('secondary-form').style.display = stage === 'secondary' ? 'block' : 'none';
+            document.getElementById('appointment-date-form').style.display = stage ? 'block' : 'none';
+            document.getElementById('certificate-form').style.display = stage ? 'block' : 'none';
+            document.getElementById('result').style.display = 'none';
+        }
+
+        function calulateRank() {
+            const stage = document.getElementById('stage').value;
+            const rank = document.getElementById(stage + '-rank').value;
+            const appointmentDate = new Date(document.getElementById('appointment-date').value);
+            const certificate = document.getElementById('certificate').value;
+            const referenceDate = new Date('2024-12-31');
+            const yearsDiff = (referenceDate - appointmentDate) / (1000 * 60 * 60 * 24 * 365.25);
+
+            let newRank = '';
+
+            if (stage === 'primary') {
+                if (rank === 'assistant-teacher-7') {
+                    newRank = yearsDiff < 10 ? 'معلم مساعد ص7' : 'معلم مدرسة ابتدائية ص 10';
+                } else if (rank === 'primary-teacher-10') {
+                    newRank = yearsDiff < 10 ? 'معلم مدرسة ابتدائية ص 10' : 'أستاذ التعليم الابتدائي ص 12';
+                    if (certificate === 'L') newRank = 'أستاذ التعليم الابتدائي ص 12';
+                    if (certificate === 'M') newRank = 'أستاذ تعليم ابتدائي قسم أول ص 13';
+                    if (certificate === 'D') newRank = 'أستاذ تعليم ابتدائي قسم ثان ص 14';
+                } else if (rank === 'primary-school-teacher-11') {
+                    newRank = yearsDiff < 4 ? 'أستاذ المدرسة الابتدائية ص 12' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ المدرسة الابتدائية قسم أول ص 13' :
+                              'أستاذ المدرسة الابتدائية قسم أول ص 13';
+                    if (certificate === 'M') newRank = 'أستاذ تعليم ابتدائي قسم أول ص 13';
+                    if (certificate === 'D') newRank = 'أستاذ تعليم ابتدائي قسم ثان ص 14';
+                } else if (rank === 'primary-head-teacher-12') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم الابتدائي قسم أول ص 13' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ التعليم الابتدائي قسم ثان ص 14' :
+                              'أستاذ التعليم الابتدائي قسم ثان ص 14';
+                    if (certificate === 'D') newRank = 'أستاذ التعليم الابتدائي قسم ثان ص 14';
+                } else if (rank === 'primary-constituent-teacher-14') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم الابتدائي قسم ثان ص 14' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ مميز في التعليم الابتدائي ص 16' :
+                              'أستاذ مميز في التعليم الابتدائي ص 16';
+                    if (certificate === 'D') newRank = 'أستاذ مميز في التعليم الابتدائي ص 16';
+                }
+            } else if (stage === 'middle') {
+                if (rank === 'basic-education-teacher-11') {
+                    newRank = yearsDiff < 10 ? 'استاذ التعليم الأساسي ص 11' : 'أستاذ التعليم المتوسط ص 12';
+                    if (certificate === 'L') newRank = 'أستاذ التعليم المتوسط ص 12';
+                    if (certificate === 'M') newRank = 'أستاذ التعليم المتوسط قسم أول ص 13';
+                    if (certificate === 'D') newRank = 'أستاذ التعليم المتوسط قسم ثان ص 15';
+                } else if (rank === 'middle-school-teacher-12') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم المتوسط ص 12' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ التعليم المتوسط قسم أول ص 13' :
+                              'أستاذ التعليم المتوسط قسم أول ص 13';
+                    if (certificate === 'M') newRank = 'أستاذ التعليم المتوسط قسم أول ص 13';
+                    if (certificate === 'D') newRank = 'أستاذ التعليم المتوسط قسم ثان ص 15';
+                } else if (rank === 'middle-head-teacher-13') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم المتوسط قسم أول ص 13' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ التعليم المتوسط قسم ثان ص 14' :
+                              'أستاذ التعليم المتوسط قسم ثان ص 14';
+                    if (certificate === 'D') newRank = 'أستاذ التعليم المتوسط قسم ثان ص 15';
+                } else if (rank === 'middle-constituent-teacher-15') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم المتوسط قسم ثان ص 15' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ مميز في التعليم المتوسط ص 16' :
+                              'أستاذ مميز في التعليم المتوسط ص 16';
+                    if (certificate === 'D') newRank = 'أستاذ مميز في التعليم المتوسط ص 16';
+                }
+            } else if (stage === 'secondary') {
+                if (rank === 'technical-teacher-11') {
+                    newRank = yearsDiff >= 15 ? 'أستاذ التعليم الثانوي ص 13' : rank;
+                } else if (rank === 'technical-teacher-12') {
+                    newRank = yearsDiff >= 15 ? 'أستاذ التعليم الثانوي ص 13' : rank;
+                } else if (rank === 'secondary-teacher-13') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم الثانوي ص 13' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ تعليم ثانوي قسم أول ص 14' :
+                              'أستاذ تعليم ثانوي قسم أول ص 14';
+                    if (certificate === 'M') newRank = 'أستاذ تعليم ثانوي قسم أول ص 14';
+                    if (certificate === 'D') newRank = 'أستاذ تعليم ثانوي قسم ثان ص 16';
+                } else if (rank === 'secondary-head-teacher-14') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم الثانوي قسم أول ص 14' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ التعليم الثانوي قسم ثان ص 16' :
+                              'أستاذ التعليم الثانوي قسم ثان ص 16';
+                    if (certificate === 'D') newRank = 'أستاذ التعليم الثانوي قسم ثان ص 16';
+                } else if (rank === 'secondary-constituent-teacher-16') {
+                    newRank = yearsDiff < 4 ? 'أستاذ التعليم الثانوي قسم ثان ص 16' :
+                              yearsDiff >= 4 && yearsDiff < 7 ? 'أستاذ مميز في التعليم الثانوي ص 17' :
+                              'أستاذ مميز في التعليم الثانوي ص 17';
+                    if (certificate === 'D') newRank = 'أستاذ مميز في التعليم الثانوي ص 17';
+                }
+            }
+
+            document.getElementById('result').innerText = `رتبتك الجديدة: ${newRank}`;
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function resetForm() {
+            document.getElementById('stage').value = '';
+            document.getElementById('primary-rank').value = '';
+            document.getElementById('middle-rank').value = '';
+            document.getElementById('secondary-rank').value = '';
+            document.getElementById('appointment-date').value = '';
+            document.getElementById('certificate').value = '';
+            document.getElementById('result').style.display = 'none';
+            updateForm();
+        }
+
+        function exitApp() {
+            window.close();
+        }
+    </script>
+</body>
+</html>
